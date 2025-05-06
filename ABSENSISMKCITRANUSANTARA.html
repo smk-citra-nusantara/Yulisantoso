@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Absensi SMK Citra Nusantara</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff8e1;
+      color: #ff6f00;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #f57c00;
+    }
+    form {
+      margin-top: 20px;
+    }
+    input, select {
+      padding: 10px;
+      margin: 5px;
+      width: 80%;
+      max-width: 300px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #fbc02d;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #f9a825;
+    }
+  </style>
+</head>
+<body>
+  <img src="logo-smk-citra-nusantara.png" alt="Logo SMK Citra Nusantara" width="150"/>
+  <h1>Absensi Online</h1>
+  <form id="absensiForm">
+    <input type="text" name="nama" placeholder="Nama Lengkap" required /><br/>
+    <input type="text" name="kelas" placeholder="Kelas" required /><br/>
+    <button type="submit">Kirim</button>
+  </form>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycby3Yn-uj4GhCBYNsUoFu3x0Y0w64amSnroBhuciozfnVl0uY5tb7ul9MW_CEU9Drmo_/exec';
+    const form = document.forms['absensiForm'];
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => alert('Absensi berhasil dikirim!'))
+        .catch(error => alert('Terjadi kesalahan. Silakan coba lagi.'));
+      form.reset();
+    });
+  </script>
+</body>
+</html>
